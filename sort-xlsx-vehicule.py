@@ -7,34 +7,25 @@ sheet = wb['CORSO']
 
 # Créer une liste pour stocker les données
 data = []
-type_vehicule = None  # Initialisation à une valeur par défaut
+
 for row in sheet.iter_rows(values_only=True):
     # Créer un dictionnaire pour stocker les données de chaque ligne
-    if row[17] is None:
-        type_vehicule = row[31]
     row_data = {
-    #    "code_chauffeur": row[0],
-        # "TAG": row[2],
-        # ! conducteur
-        "Nom_conducteur": row[3],
-        # "telephone_conducteur": row[4],
-        # "numero_permis": row[5],
+        # "TAG": row[2], 
+        # "NOM CHAUFFEUR": row[3],
+        # "TEL FBA": row[4],
+        # "N° PERMIS CHAUFFEUR": row[5],
         # "Permis délivré le": row[6],
-        # "date_delivrance_permis": row[7],
-        # "date_expir_permis": row[8],
-        #! Vehucule 
+        # "VALIDITE PERMIS CHAUFFEUR": row[7],
+        "modele_vehicule" :'Tracteur / Romorque',
         "num_interne_tracteur": row[1],
-        "type_vehicule": type_vehicule,
+        "type_vehicule": row[17],
+        "marque_vehicule": 'null',
         "plaque_immatriculation": row[9],
         "date_ctr_tech": row[11],
         "date_fin_ctr_tech": row[12],
         "num_chassis": row[16],
-        "num_interne_remorque": row[29],
-        "num_chassis_remorque": row[34],
-        "remorque_immatriculation": row[32],
-        # "age": row[10],
         # "Jours Restants CT": row[13],
-        # "VALIDITE PERMIS A CIRCULER": row[14],
         # "Jours Restants PAC": row[15],
         # "NOMBRE SANGLE": row[18],
         # "N° Interne Extincteur": row[19],
@@ -47,9 +38,14 @@ for row in sheet.iter_rows(values_only=True):
         # "Clé de Roue": row[26],
         # "CRIQUE":  row[27],
         # "Clé 27":  row[28],
+        # Romorque
+        # "modele_vehicule" :'Romorque',
+        "num_interne_remorque": row[29],
         # "Camion de la remorque":  row[30],
-        # "TYPE REMORQUE":row[31],
+        # "type_vehicule":row[31],
+        "remorque_immatriculation": row[32],
         # "null": row[33],
+        "num_chassis_remorque": row[34],
         # "Pneus Neuf": row[35],
         # "NOMBRE PLANCHE": row[36],
         # "Roue de Secours": row[37],
@@ -64,7 +60,7 @@ for row in sheet.iter_rows(values_only=True):
 wb.close()
 
 # Écrire les données dans un fichier JSON
-with open('./data/vehicule.json', 'w', encoding='utf-8') as json_file:
+with open('./data/Tracteur.json', 'w', encoding='utf-8') as json_file:
     json.dump(data, json_file, indent=4, ensure_ascii=False)
 
 # Obtenir le nombre de colonnes dans la feuille de calcul
