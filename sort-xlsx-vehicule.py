@@ -7,7 +7,7 @@ sheet = wb['CORSO']
 
 # Créer une liste pour stocker les données
 data = []
-
+# etat de vehicule Disponible
 for row in sheet.iter_rows(values_only=True):
     # Créer un dictionnaire pour stocker les données de chaque ligne
     row_data = {
