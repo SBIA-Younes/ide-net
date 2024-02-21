@@ -3,7 +3,7 @@ import json
 from config import DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME
 
 # Charger les données depuis le fichier JSON
-with open('./data/donneesSkikda.json', 'r', encoding='utf-8') as file:
+with open('./data/donneesMsila.json', 'r', encoding='utf-8') as file:
     donnees_conducteur_vehicule = json.load(file)
 
 # Etablissement de la connexion à la base de données
@@ -23,7 +23,7 @@ try:
     # Insertion des données des véhicules dans la table 'vehicule' en utilisant l'IDconducteur de la table 'conducteur'
     for item in donnees_conducteur_vehicule:
         # Récupération de l'IDconducteur à partir du nom du conducteur
-        nom_conducteur = item['CHAUFFEUR']
+        nom_conducteur = item['NOM CHAUFFEUR']
         sql_select_id_conducteur = "SELECT IDconducteur FROM conducteur WHERE Nom_conducteur = %s"
         cursor.execute(sql_select_id_conducteur, (nom_conducteur,))
         row = cursor.fetchone()
@@ -37,15 +37,15 @@ try:
         num_interne_tracteur = item.get('N° INTERNE TRACTEUR', 'NULL') or 'NULL'
         type_vehicule = item.get('TYPE TRACTEUR', 'NULL') or 'NULL'
         plaque_immatriculation = item.get('MATRICULE TRACTEUR', 'NULL') or 'NULL'
-        date_ctr_tech = item.get('VALIDITE CONTRÔLE TECHNIQUE (TRACTEUR)', 'NULL') or 'NULL'
         num_chassis = item.get('NUMERO DE CHASSIS TRACTEUR', 'NULL') or 'NULL'
+        date_ctr_tech = item.get('VALIDITE CONTRÔLE TECHNIQUE (TRACTEUR)', 'NULL') or 'NULL'
         num_interne_remorque = item.get('NUMERO INTERNE REMORQUE', 'NULL') or 'NULL'
         type_remorque = item.get('TYPE REMORQUE', 'NULL') or 'NULL'
-        num_chassis_remorque = item.get('N° CHASSIS REMORQUE', 'NULL') or 'NULL'
         remorque_immatriculation = item.get('MATRICULE REMORQUE', 'NULL') or 'NULL'
+        num_chassis_remorque = item.get('N° CHASSIS REMORQUE', 'NULL') or 'NULL'
         date_ctr_tech_remorque = item.get('VALIDITE CONTRÔLE TECHNIQUE (REMORQUE)', 'NULL') or 'NULL'
         etat_vehicule = 'Disponible'
-        IDSousParc = '9'
+        IDSousParc = '16'
 
         # Construction de la requête SQL d'insertion du véhicule
         sql_insert_vehicule = """
