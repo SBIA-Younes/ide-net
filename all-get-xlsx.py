@@ -6,7 +6,7 @@ from datetime import datetime
 wb = openpyxl.load_workbook('./data/sort all-xlsx.xlsx')
 
 # Sélectionner la feuille de calcul avec laquelle vous souhaitez travailler
-sheet = wb['Msila']  # Ou vous pouvez sélectionner une feuille spécifique par son nom : wb['Nom_de_la_feuille']
+sheet = wb['Collecte']  # Ou vous pouvez sélectionner une feuille spécifique par son nom : wb['Nom_de_la_feuille']
 
 # Créer une liste pour stocker les données
 
@@ -43,5 +43,5 @@ for row in sheet.iter_rows(values_only=True):
 wb.close()
 
 # Écrire les données dans un fichier JSON
-with open('./data/donneesMsila.json', 'w', encoding='utf-8') as json_file:
+with open('./data/donneesCollecte.json', 'w', encoding='utf-8') as json_file:
     json.dump(data, json_file, indent=4, ensure_ascii=False)
